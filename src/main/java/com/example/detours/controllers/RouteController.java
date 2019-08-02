@@ -27,7 +27,7 @@ public class RouteController {
     }
 
     @GetMapping("/routes/{id}")
-    public ResponseEntity<Route> show(@PathVariable Long id) {
+    public ResponseEntity<Route> read(@PathVariable Integer id) {
         return new ResponseEntity<>(routeService.getRoute(id), HttpStatus.OK);
     }
 
@@ -37,7 +37,7 @@ public class RouteController {
     }
 
     @DeleteMapping("/profiles/{id}")
-    public ResponseEntity<Boolean> delete(@PathVariable Long id) {
+    public ResponseEntity<Boolean> delete(@PathVariable Integer id) {
         return new ResponseEntity<>(routeService.deleteRoute(id), HttpStatus.OK);
     }
 }

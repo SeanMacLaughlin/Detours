@@ -22,7 +22,7 @@ public class RouteService {
         return routeRepository.save(route);
     }
 
-    public Route getRoute(Long id) {
+    public Route getRoute(Integer id) {
         return routeRepository.findById(id).get();
     }
 
@@ -30,7 +30,7 @@ public class RouteService {
         return new HashSet<>(routeRepository.findAll());
     }
 
-    public Boolean deleteRoute(Long id) {
+    public Boolean deleteRoute(Integer id) {
         routeRepository.deleteById(id);
         return true;
     }
