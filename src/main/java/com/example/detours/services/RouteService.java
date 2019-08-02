@@ -29,7 +29,7 @@ public class RouteService {
     public Set<Route> getAllRoutes () {
         return new HashSet<>(routeRepository.findAll());
     }
-
+    
     public Boolean deleteRoute(Integer id) {
         routeRepository.deleteById(id);
         return true;

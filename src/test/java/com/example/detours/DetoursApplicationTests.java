@@ -12,5 +12,4 @@ public class DetoursApplicationTests {
 	@Test
 	public void contextLoads() {
 	}
-
 }

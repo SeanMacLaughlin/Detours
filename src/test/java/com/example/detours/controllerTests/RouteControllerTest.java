@@ -77,7 +77,7 @@ public class RouteControllerTest {
     }
 
     @Test
-    public void testGetAllAccounts() {
+    public void testGetAllRoutes() {
         HttpStatus expected = HttpStatus.OK;
         Point start = new Point(39.872514, -75.591518);
         Point end = new Point(40.001343,-75.702213);
