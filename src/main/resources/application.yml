@@ -1,15 +1,27 @@
----
-
-spring:
-  profiles: local
-  datasource:
-    url: jdbc:mysql://localhost:3306/test1
-    username: root
-    password: password
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa:
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL5Dialect
+#---
+#server:
+#  port: 8081
+#
+#spring:
+#  profiles: local
+#  datasource: UTC
+#  url: jdbc:mysql://localhost:3306/moneymanagement?allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=
+#  username: root
+#  driver-class-name: com.mysql.cj.jdbc.Driver
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.MySQL5Dialect
+#
+#---
+#
+#spring:
+#  profiles: dev
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.MySQL5Dialect

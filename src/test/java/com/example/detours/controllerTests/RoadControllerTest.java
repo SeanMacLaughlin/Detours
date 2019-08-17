@@ -1,16 +1,15 @@
 package com.example.detours.controllerTests;
 
 import com.example.detours.DetoursApplication;
-import com.example.detours.controllers.RouteController;
-import com.example.detours.entities.Route;
-import com.example.detours.services.RouteService;
+import com.example.detours.controllers.RoadController;
+import com.example.detours.entities.Road;
+import com.example.detours.services.RoadService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.BDDMockito;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.data.geo.Point;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ContextConfiguration;
@@ -24,87 +23,87 @@ import java.util.Set;
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = DetoursApplication.class)
 @TestPropertySource(locations="classpath:application.properties")
-public class RouteControllerTest {
+public class RoadControllerTest {
 
     @MockBean
-    private RouteService service;
+    private RoadService service;
 
-    private RouteController controller;
+    private RoadController controller;
 
     @Before
     public void setUp() {
-        this.controller = new RouteController(service);
+        this.controller = new RoadController(service);
     }
 
     @Test
     public void testCreate() {
         //Given
         HttpStatus expected = HttpStatus.CREATED;
-        Route expectedRoute = new Route();
+        Road expectedRoad = new Road();
         BDDMockito
-                .given(service.create(expectedRoute))
-                .willReturn(expectedRoute);
+                .given(service.create(expectedRoad))
+                .willReturn(expectedRoad);
 
         //When
-        ResponseEntity<Route> response = controller.create(expectedRoute);
+        ResponseEntity<Road> response = controller.create(expectedRoad);
         HttpStatus actual = response.getStatusCode();
-        Route actualRoute = response.getBody();
+        Road actualRoad = response.getBody();
 
         //Then
         Assert.assertEquals(expected, actual);
-        Assert.assertEquals(expectedRoute, actualRoute);
+        Assert.assertEquals(expectedRoad, actualRoad);
     }
 
     @Test
-    public void testGetRoute() {
+    public void testGetRoad() {
         // Given
-        Point start = new Point(39.872514, -75.591518);
-        Point end = new Point(40.001343,-75.702213);
+        String start = "39.872514, -75.591518";
+        String end = "40.001343,-75.702213";
         HttpStatus expected = HttpStatus.OK;
-        Route expectedRoute = new Route("Creek Road", start, end);
+        Road expectedRoad = new Road("Creek Road", start, end);
         BDDMockito
-                .given(service.getRoute(1))
-                .willReturn(expectedRoute);
+                .given(service.getRoad(1))
+                .willReturn(expectedRoad);
 
         // When
-        ResponseEntity<Route> response = controller.read(1);
+        ResponseEntity<Road> response = controller.read(1);
         HttpStatus actual = response.getStatusCode();
-        Route actualRoute = response.getBody();
+        Road actualRoad = response.getBody();
 
         // Then
         Assert.assertEquals(expected, actual);
-        Assert.assertEquals(expectedRoute, actualRoute);
+        Assert.assertEquals(expectedRoad, actualRoad);
     }
 
     @Test
-    public void testGetAllRoutes() {
+    public void testGetAllRoads() {
         HttpStatus expected = HttpStatus.OK;
-        Point start = new Point(39.872514, -75.591518);
-        Point end = new Point(40.001343,-75.702213);
-        Route route = new Route("Creek", start, end);
-        Route route1 = new Route("Valley", start, end);
-        Set<Route> expectedRouteList = new HashSet<>();
-        expectedRouteList.add(route);
-        expectedRouteList.add(route1);
+        String start = "39.872514, -75.591518";
+        String end = "40.001343,-75.702213";
+        Road road = new Road("Creek", start, end);
+        Road road1 = new Road("Valley", start, end);
+        Set<Road> expectedRoadList = new HashSet<>();
+        expectedRoadList.add(road);
+        expectedRoadList.add(road1);
         BDDMockito
-                .given(service.getAllRoutes())
-                .willReturn(expectedRouteList);
+                .given(service.getAllRoads())
+                .willReturn(expectedRoadList);
 
         // When
-        ResponseEntity<Set<Route>> response = controller.getAllRoutes();
+        ResponseEntity<Set<Road>> response = controller.getAllRoads();
         HttpStatus actual = response.getStatusCode();
-        Set<Route> actualRouteList = response.getBody();
+        Set<Road> actualRoadList = response.getBody();
 
         // Then
         Assert.assertEquals(expected, actual);
-        Assert.assertEquals(expectedRouteList, actualRouteList);
+        Assert.assertEquals(expectedRoadList, actualRoadList);
     }
 
     @Test
     public void testDelete() {
         HttpStatus expected = HttpStatus.OK;
         BDDMockito
-                .given(service.deleteRoute(1))
+                .given(service.deleteRoad(1))
                 .willReturn(true);
 
         ResponseEntity<Boolean> response = controller.delete(1);
