@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
-@CrossOrigin("*")
+//@CrossOrigin("*")
 @RestController
 public class RoadController {
 
@@ -30,12 +30,12 @@ public class RoadController {
         return new ResponseEntity<>(roadService.getRoad(id), HttpStatus.OK);
     }
 
-    @GetMapping("/roads/allRoads")
+    @GetMapping("/roads/")
     public ResponseEntity<Set<Road>> getAllRoads() {
         return new ResponseEntity<>(roadService.getAllRoads(), HttpStatus.OK);
     }
 
-    @DeleteMapping("/profiles/{id}")
+    @DeleteMapping("/roads/{id}")
     public ResponseEntity<Boolean> delete(@PathVariable Integer id) {
         return new ResponseEntity<>(roadService.deleteRoad(id), HttpStatus.OK);
     }
